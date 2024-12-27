@@ -1,10 +1,10 @@
 {
-  "name": "vitesse-webext",
-  "displayName": "Vitesse WebExt",
+  "name": "qrcode-webext",
+  "displayName": "Qrcode Tools",
   "version": "0.0.1",
-  "private": true,
   "packageManager": "pnpm@9.7.1",
-  "description": "[description]",
+  "description": "二维码拓展, 支持浮窗、图片扫描和快速生成",
+  "license": "MIT",
   "scripts": {
     "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",
     "dev-firefox": "npm run clear && cross-env NODE_ENV=development EXTENSION=firefox run-p dev:*",
