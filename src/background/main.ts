@@ -21,7 +21,6 @@ if (USE_SIDE_PANEL) {
 }
 
 browser.runtime.onInstalled.addListener((): void => {
-  // eslint-disable-next-line no-console
   console.log('Extension installed')
 })
 
@@ -40,12 +39,10 @@ browser.tabs.onActivated.addListener(async ({ tabId }) => {
   try {
     tab = await browser.tabs.get(previousTabId)
     previousTabId = tabId
-  }
-  catch {
+  } catch {
     return
   }
 
-  // eslint-disable-next-line no-console
   console.log('previous tab', tab)
   sendMessage('tab-prev', { title: tab.title }, { context: 'content-script', tabId })
 })
@@ -56,8 +53,7 @@ onMessage('get-current-tab', async () => {
     return {
       title: tab?.title,
     }
-  }
-  catch {
+  } catch {
     return {
       title: undefined,
     }
