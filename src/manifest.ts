@@ -70,8 +70,7 @@ export async function getManifest() {
     manifest.sidebar_action = {
       default_panel: 'dist/sidepanel/index.html',
     }
-  }
-  else {
+  } else {
     // the sidebar_action does not work for chromium based
     (manifest as any).side_panel = {
       default_path: 'dist/sidepanel/index.html',
