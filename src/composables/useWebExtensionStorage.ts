@@ -82,29 +82,30 @@ export function useWebExtensionStorage<T>(
   const serializer = options.serializer ?? StorageSerializers[type]
 
   async function read(event?: { key: string, newValue: string | null }) {
-    if (event && event.key !== key)
+    if (event && event.key !== key) {
       return
+    }
 
     try {
       const rawValue = event ? event.newValue : await storageInterface.getItem(key)
       if (rawValue == null) {
         data.value = rawInit
-        if (writeDefaults && rawInit !== null)
+        if (writeDefaults && rawInit !== null) {
           await storageInterface.setItem(key, await serializer.write(rawInit))
-      }
-      else if (mergeDefaults) {
+        }
+      } else if (mergeDefaults) {
         const value = await serializer.read(rawValue) as T
-        if (typeof mergeDefaults === 'function')
+        if (typeof mergeDefaults === 'function') {
           data.value = mergeDefaults(value, rawInit)
-        else if (type === 'object' && !Array.isArray(value))
+        } else if (type === 'object' && !Array.isArray(value)) {
           data.value = { ...(rawInit as Record<keyof unknown, unknown>), ...(value as Record<keyof unknown, unknown>) } as T
-        else data.value = value
-      }
-      else {
+        } else {
+          data.value = value
+        }
+      } else {
         data.value = await serializer.read(rawValue) as T
       }
-    }
-    catch (error) {
+    } catch (error) {
       onError(error)
     }
   }
@@ -118,8 +119,7 @@ export function useWebExtensionStorage<T>(
           ? storageInterface.removeItem(key)
           : storageInterface.setItem(key, await serializer.write(data.value))
       )
-    }
-    catch (error) {
+    } catch (error) {
       onError(error)
     }
   }
@@ -144,8 +144,7 @@ export function useWebExtensionStorage<T>(
             newValue: change.newValue as string | null,
           })
         }
-      }
-      finally {
+      } finally {
         resumeWatch()
       }
     }
