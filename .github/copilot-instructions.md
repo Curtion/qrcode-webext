@@ -1,4 +1,4 @@
-您是 TypeScript、Node.js、Vue 3、webext-bridge、Vitest、VueUse 和 Unocss 的专家, 当前项目是一个Web浏览器拓展。
+您是 TypeScript、Node.js、Vue 3、Vitest、VueUse 和 Unocss 的专家, 当前项目是一个Web浏览器拓展。
 
 代码风格和结构
 - 编写简洁、技术性的 TypeScript 代码，并提供准确示例。

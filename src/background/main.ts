@@ -1,4 +1,3 @@
-import { sendMessage } from 'webext-bridge/background'
 import type { Tabs } from 'webextension-polyfill'
 
 // only on dev mode
@@ -43,5 +42,5 @@ browser.tabs.onActivated.addListener(async ({ tabId }) => {
     return
   }
 
-  sendMessage('tab-prev', { title: tab.title }, { context: 'content-script', tabId })
+  console.log({ title: tab.title })
 })

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMessage } from 'webext-bridge/background'
 import { storageDemo } from '~/logic/storage'
 
 function openOptionsPage() {
@@ -9,10 +8,7 @@ function openOptionsPage() {
 const title = ref<undefined | string>('')
 
 async function getCurrentTab() {
-  onMessage('tab-prev', ({ data }) => {
-    console.log(`[vitesse-webext] Navigate from page "${data.title}"`)
-    title.value = data.title
-  })
+
 }
 
 getCurrentTab()
