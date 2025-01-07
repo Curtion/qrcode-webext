@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Tabs } from 'webextension-polyfill'
 import { storageDemo } from '~/logic/storage'
 
 function openOptionsPage() {
@@ -8,7 +9,16 @@ function openOptionsPage() {
 const title = ref<undefined | string>('')
 
 async function getCurrentTab() {
-
+  browser.tabs.onActivated.addListener(async ({ tabId }) => {
+    let tab: Tabs.Tab
+    try {
+      tab = await browser.tabs.get(tabId)
+    } catch {
+      return
+    }
+    console.log(tab)
+    title.value = tab.url
+  })
 }
 
 getCurrentTab()

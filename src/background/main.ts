@@ -1,5 +1,3 @@
-import type { Tabs } from 'webextension-polyfill'
-
 // only on dev mode
 if (import.meta.hot) {
   // @ts-expect-error for background HMR
@@ -21,26 +19,4 @@ if (USE_SIDE_PANEL) {
 
 browser.runtime.onInstalled.addListener((): void => {
   console.log('Extension installed')
-})
-
-let previousTabId = 0
-
-// communication example: send previous tab title from background page
-// see shim.d.ts for type declaration
-browser.tabs.onActivated.addListener(async ({ tabId }) => {
-  if (!previousTabId) {
-    previousTabId = tabId
-    return
-  }
-
-  let tab: Tabs.Tab
-
-  try {
-    tab = await browser.tabs.get(previousTabId)
-    previousTabId = tabId
-  } catch {
-    return
-  }
-
-  console.log({ title: tab.title })
 })
