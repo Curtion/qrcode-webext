@@ -1,6 +1,6 @@
 {
   "name": "qrcode-webext",
-  "displayName": "Qrcode Tools",
+  "displayName": "QRcode Tools",
   "version": "0.0.1",
   "packageManager": "pnpm@9.15.3",
   "description": "二维码拓展, 支持浮窗、图片扫描和快速生成",

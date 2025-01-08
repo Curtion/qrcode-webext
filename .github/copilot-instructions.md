@@ -24,7 +24,7 @@
 - 组合逻辑使用 camelCase（例如：useAuthState.ts）。
 
 TypeScript 使用
-- 所有代码都使用 TypeScript；更倾向于使用类型而非接口。
+- 所有代码都使用 TypeScript；更倾向于使用Interface而非Type。
 - 避免使用枚举；使用常量对象代替。
 - 使用 Vue 3 结合 TypeScript，利用PropType。
 

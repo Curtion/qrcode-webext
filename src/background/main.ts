@@ -20,3 +20,20 @@ if (USE_SIDE_PANEL) {
 browser.runtime.onInstalled.addListener((): void => {
   console.log('Extension installed')
 })
+
+browser.tabs.onActivated.addListener(async ({ tabId }) => {
+  try {
+    const tab = await browser.tabs.get(tabId)
+    await browser.runtime.sendMessage(undefined, { type: 'onActivated', data: tab })
+  } catch (e: unknown) {
+    console.error(e)
+  }
+})
+
+browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+  try {
+    await browser.runtime.sendMessage(undefined, { type: 'onUpdated', data: { tabId, changeInfo, tab } })
+  } catch (e: unknown) {
+    console.error(e)
+  }
+})
