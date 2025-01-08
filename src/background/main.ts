@@ -21,10 +21,10 @@ browser.runtime.onInstalled.addListener((): void => {
   console.log('Extension installed')
 })
 
-browser.tabs.onActivated.addListener(async ({ tabId }) => {
+browser.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
   try {
     const tab = await browser.tabs.get(tabId)
-    await browser.runtime.sendMessage(undefined, { type: 'onActivated', data: tab })
+    await browser.runtime.sendMessage(undefined, { type: 'onActivated', data: { tab, windowId } })
   } catch (e: unknown) {
     console.error(e)
   }

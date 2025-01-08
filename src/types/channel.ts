@@ -2,7 +2,10 @@ import type { Tabs } from 'webextension-polyfill'
 
 interface TabActivatedEvent {
   type: 'onActivated'
-  data: Tabs.Tab
+  data: {
+    tab: Tabs.Tab
+    windowId: number
+  }
 }
 
 interface TabUpdatedEvent {

@@ -30,6 +30,9 @@
     "postinstall": "simple-git-hooks",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",
     "@ffflorian/jszip-cli": "^3.8.2",
@@ -37,6 +40,7 @@
     "@playwright/test": "^1.49.1",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.5",
+    "@types/qrcode": "^1.5.5",
     "@types/webextension-polyfill": "^0.12.1",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@unocss/reset": "^0.62.4",
