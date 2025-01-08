@@ -5,7 +5,6 @@ import { generateQR } from '~/logic/qrcode'
 const qrdata = ref<undefined | string>()
 
 watchEffect(async () => {
-  console.log(currentUrl.value)
   if (!currentUrl.value) {
     return
   }

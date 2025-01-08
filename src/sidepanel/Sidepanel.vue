@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { currentUrl } from '~/logic/tab'
+import { currentUrl, islockedContent } from '~/logic/tab'
 import { generateQR } from '~/logic/qrcode'
 
 const qrdata = ref<undefined | string>()
 
 watchEffect(async () => {
-  console.log(currentUrl.value)
   if (!currentUrl.value) {
     return
   }
@@ -30,6 +29,15 @@ function openOptionsPage() {
          scrollbar-thumb:bg-gray-300 dark:scrollbar-thumb:bg-gray-600
          hover:scrollbar-thumb:bg-gray-400"
     />
+    <div class="flex items-center gap-2 mt-2 w-full">
+      <input
+        id="lock-content"
+        v-model="islockedContent"
+        type="checkbox"
+        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+      >
+      <label for="lock-content" class="text-sm cursor-pointer">锁定内容</label>
+    </div>
     <button class="btn mt-2" @click="openOptionsPage">
       打开设置页
     </button>
