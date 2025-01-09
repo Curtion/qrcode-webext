@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { scan } from 'qr-scanner-wechat'
 import { currentTabId, tabs } from '~/logic/tab'
 import { generateQR } from '~/logic/qrcode'
 
@@ -21,8 +22,25 @@ function handleDataTransferItem(list: DataTransferItem[]) {
   if (fileItems) {
     const file = fileItems.getAsFile()
     if (file) {
-      console.log('拖拽的文件:', file)
-      // TODO: 处理文件
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const img = new Image()
+        img.onload = async () => {
+          const canvas = document.createElement('canvas')
+          canvas.width = img.width
+          canvas.height = img.height
+          const ctx = canvas.getContext('2d')
+          if (!ctx) {
+            return
+          }
+          ctx.drawImage(img, 0, 0)
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+          const result = await scan(imageData)
+          console.log(result)
+        }
+        img.src = e.target?.result as string
+      }
+      reader.readAsDataURL(file)
     }
   } else {
     const textItems = list.find(item => item.kind === 'string' && item.type === 'text/plain')
