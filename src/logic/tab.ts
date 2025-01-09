@@ -2,12 +2,8 @@ import type { ChannelData } from '~/types/channel'
 
 const currentUrl = ref<undefined | string>()
 const currentWindowId = ref<undefined | number>()
-export const islockedContent = ref(false)
 
 browser.runtime.onMessage.addListener(async (message) => {
-  if (islockedContent.value) {
-    return
-  }
   const data = message as ChannelData
   if (data.type === 'onActivated') {
     if (data.data.windowId === currentWindowId.value) {
