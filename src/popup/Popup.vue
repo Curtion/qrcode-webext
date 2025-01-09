@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { currentUrl } from '~/logic/tab'
+import { currentTabId, tabs } from '~/logic/tab'
 import { generateQR } from '~/logic/qrcode'
 
 const qrdata = ref<undefined | string>()
 
 watchEffect(async () => {
-  if (!currentUrl.value) {
+  const url = tabs.value[currentTabId.value]?.url
+  if (!url) {
     return
   }
-  qrdata.value = await generateQR(currentUrl.value)
+  qrdata.value = await generateQR(url)
 })
 
 function openOptionsPage() {
@@ -20,7 +21,7 @@ function openOptionsPage() {
   <main class="w-320px px-4 py-5 text-gray-700 bg-[#F7F7F7] flex items-center flex-col">
     <img :src="qrdata" alt="二维码">
     <textarea
-      v-model="currentUrl" class="w-full min-h-20 mt-2 p-2 text-sm text-gray-700 bg-white
+      v-model="tabs[currentTabId].url" class="w-full min-h-20 mt-2 p-2 text-sm text-gray-700 bg-white
          rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500
          outline-none transition duration-200 hover:border-blue-400
          resize-y

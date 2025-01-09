@@ -13,7 +13,7 @@ watchEffect(async () => {
 })
 
 function handleInputChange() {
-  console.log('handleInputChange')
+  // TODO 可以在这里设置isLocked状态, 用于锁定当前标签页的url
 }
 
 function openOptionsPage() {
