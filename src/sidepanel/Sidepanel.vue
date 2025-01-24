@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { scan } from 'qr-scanner-wechat'
+import { decode } from 'qr-decode-wechat'
 import { currentTabId, tabs } from '~/logic/tab'
 import { generateQR } from '~/logic/qrcode'
 
@@ -34,9 +34,10 @@ function handleDataTransferItem(list: DataTransferItem[]) {
             return
           }
           ctx.drawImage(img, 0, 0)
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-          const result = await scan(imageData)
-          console.log(result)
+          const result = await decode(canvas)
+          if (result[0]?.text) {
+            tabs.value[currentTabId.value].url = result[0]?.text
+          }
         }
         img.src = e.target?.result as string
       }

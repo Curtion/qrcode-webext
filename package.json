@@ -31,7 +31,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "qr-scanner-wechat": "^0.1.3",
+    "qr-decode-wechat": "^1.0.2",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {
