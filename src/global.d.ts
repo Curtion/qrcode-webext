@@ -6,3 +6,7 @@ declare module '*.vue' {
   const component: any
   export default component
 }
+
+interface Window {
+  captureCanvas: () => string | null
+}

@@ -16,4 +16,12 @@ interface TabUpdatedEvent {
     tab: Tabs.Tab
   }
 }
-export type ChannelData = TabActivatedEvent | TabUpdatedEvent
+
+interface CanvasParseEvent {
+  type: 'canvasParse'
+  data: {
+    base64: string
+  }
+}
+
+export type ChannelData = TabActivatedEvent | TabUpdatedEvent | CanvasParseEvent
