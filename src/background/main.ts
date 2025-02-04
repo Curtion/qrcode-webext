@@ -49,13 +49,6 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
       } })
       return
     }
-    if (info.linkUrl) {
-      await browser.runtime.sendMessage(undefined, { type: 'encode', data: {
-        text: info.linkUrl,
-        tabId: tab.id,
-      } })
-      return
-    }
     if (info.mediaType === 'image' && info.srcUrl) {
       const base64 = info.srcUrl.startsWith('data:')
         ? info.srcUrl
@@ -63,6 +56,13 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 
       await browser.runtime.sendMessage(undefined, { type: 'decode', data: {
         base64,
+        tabId: tab.id,
+      } })
+      return
+    }
+    if (info.linkUrl) {
+      await browser.runtime.sendMessage(undefined, { type: 'encode', data: {
+        text: info.linkUrl,
         tabId: tab.id,
       } })
       return
