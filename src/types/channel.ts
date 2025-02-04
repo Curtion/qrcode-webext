@@ -17,11 +17,20 @@ interface TabUpdatedEvent {
   }
 }
 
-interface CanvasParseEvent {
-  type: 'canvasParse'
+interface DecodeEvent {
+  type: 'decode'
   data: {
     base64: string
+    tabId: number
   }
 }
 
-export type ChannelData = TabActivatedEvent | TabUpdatedEvent | CanvasParseEvent
+interface EncodeEvent {
+  type: 'encode'
+  data: {
+    text: string
+    tabId: number
+  }
+}
+
+export type ChannelData = TabActivatedEvent | TabUpdatedEvent | DecodeEvent | EncodeEvent

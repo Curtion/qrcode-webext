@@ -17,7 +17,7 @@ window.captureCanvas = () => {
   try {
     const data = lastCanvas.toDataURL()
     lastCanvas = null
-    return data.split(',')[1]
+    return data
   } catch (e) {
     console.error('Canvas 读取失败:', e)
     return null

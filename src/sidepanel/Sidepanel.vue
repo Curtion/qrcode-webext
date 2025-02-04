@@ -78,6 +78,10 @@ function handleDrop(event: DragEvent) {
 }
 
 function handlePaste(event: ClipboardEvent) {
+  if (event.target instanceof HTMLTextAreaElement) {
+    // 如果焦点在textarea上, 则不处理
+    return
+  }
   event.preventDefault()
   const items = event.clipboardData?.items
   if (!items) {
