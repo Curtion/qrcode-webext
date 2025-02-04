@@ -24,7 +24,7 @@ function hide() {
 
 onMounted(() => {
   visible.value = true
-  timer = setTimeout(hide, props.duration || 2000) as unknown as number
+  timer = setTimeout(hide, props.duration || 1000) as unknown as number
 })
 </script>
 

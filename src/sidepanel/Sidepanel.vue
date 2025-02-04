@@ -2,6 +2,7 @@
 import { decode } from 'qr-decode-wechat'
 import { currentTabId, tabs } from '~/logic/tab'
 import { generateQR } from '~/logic/qrcode'
+import showToast from '~/logic/toast'
 
 const qrdata = ref<undefined | string>()
 
@@ -37,6 +38,9 @@ function handleDataTransferItem(list: DataTransferItem[]) {
           const result = await decode(canvas)
           if (result[0]?.text) {
             tabs.value[currentTabId.value].url = result[0]?.text
+            showToast('解析二维码成功')
+          } else {
+            showToast('解析二维码失败')
           }
         }
         img.src = e.target?.result as string
@@ -50,6 +54,7 @@ function handleDataTransferItem(list: DataTransferItem[]) {
     }
     textItems.getAsString((text) => {
       tabs.value[currentTabId.value].url = text
+      showToast('生成二维码成功')
     })
   }
 }
