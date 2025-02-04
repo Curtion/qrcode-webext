@@ -54,9 +54,9 @@ function handleDataTransferItem(list: DataTransferItem[]) {
   }
 }
 
-function openOptionsPage() {
-  browser.runtime.openOptionsPage()
-}
+// function openOptionsPage() {
+//   browser.runtime.openOptionsPage()
+// }
 
 function handleDragOver(event: DragEvent) {
   event.preventDefault()
@@ -110,9 +110,9 @@ onBeforeUnmount(() => {
          hover:scrollbar-thumb:bg-gray-400"
       @change="handleInputChange"
     />
-    <button class="btn mt-2" @click="openOptionsPage">
+    <!-- <button class="btn mt-2" @click="openOptionsPage">
       打开设置页
-    </button>
+    </button> -->
     <div class="text-sm text-gray-500 mt-4 px-4 py-2 bg-gray-100 rounded-md">
       可以通过以下方式快速操作：
       <ul class="mt-1 list-disc list-inside">

@@ -12,9 +12,9 @@ watchEffect(async () => {
   qrdata.value = await generateQR(url)
 })
 
-function openOptionsPage() {
-  browser.runtime.openOptionsPage()
-}
+// function openOptionsPage() {
+//   browser.runtime.openOptionsPage()
+// }
 </script>
 
 <template>
@@ -30,8 +30,8 @@ function openOptionsPage() {
          scrollbar-thumb:bg-gray-300 dark:scrollbar-thumb:bg-gray-600
          hover:scrollbar-thumb:bg-gray-400"
     />
-    <button class="btn mt-2" @click="openOptionsPage">
+    <!-- <button class="btn mt-2" @click="openOptionsPage">
       打开设置页
-    </button>
+    </button> -->
   </main>
 </template>
