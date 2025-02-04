@@ -127,6 +127,7 @@ onBeforeUnmount(() => {
       <ul class="mt-1 list-disc list-inside">
         <li>拖拽二维码图片/文字到侧边栏</li>
         <li>聚焦侧边栏, 按 Ctrl+V (Mac: Command+V) 粘贴图片/文字</li>
+        <li>在图片/文字/链接右键上点击菜单"QRcode Tools"</li>
       </ul>
     </div>
   </main>
