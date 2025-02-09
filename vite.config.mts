@@ -1,7 +1,8 @@
 /// <reference types="vitest" />
 
 import { dirname, relative } from 'node:path'
-import type { UserConfig } from 'vite'
+import fs from 'node:fs'
+import type { Plugin, UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
@@ -11,6 +12,51 @@ import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
 import { isDev, port, r } from './scripts/utils'
 import packageJson from './package.json'
+
+function copyLocalesPlugin(): Plugin {
+  return {
+    name: 'copy-locales',
+    buildStart() {
+      const srcDir = r('src/_locales')
+      const destDir = r('extension/_locales')
+
+      if (!fs.existsSync(srcDir)) {
+        return
+      }
+
+      // 确保目标目录存在
+      if (!fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true })
+      }
+
+      // 递归复制目录
+      function copyDir(src: string, dest: string) {
+        const files = fs.readdirSync(src)
+        files.forEach((file) => {
+          const srcPath = `${src}/${file}`
+          const destPath = `${dest}/${file}`
+          const stat = fs.statSync(srcPath)
+
+          if (stat.isDirectory()) {
+            if (!fs.existsSync(destPath)) {
+              fs.mkdirSync(destPath, { recursive: true })
+            }
+            copyDir(srcPath, destPath)
+          } else {
+            fs.copyFileSync(srcPath, destPath)
+          }
+        })
+      }
+
+      copyDir(srcDir, destDir)
+    },
+    watchChange(id) {
+      if (id.includes('_locales')) {
+        this.addWatchFile(id)
+      }
+    },
+  }
+}
 
 export const sharedConfig: UserConfig = {
   root: r('src'),
@@ -66,6 +112,8 @@ export const sharedConfig: UserConfig = {
         return html.replace(/"\/assets\//g, `"${relative(dirname(path), '/assets')}/`)
       },
     },
+
+    copyLocalesPlugin(),
   ],
   optimizeDeps: {
     include: [

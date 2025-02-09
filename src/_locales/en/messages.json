@@ -1,10 +1,1 @@
-{
-  "extensionName": {
-    "message": "扩展名称",
-    "description": "扩展的名称"
-  },
-  "greeting": {
-    "message": "你好",
-    "description": "欢迎信息"
-  }
-}
+{}
