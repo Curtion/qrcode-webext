@@ -1,6 +1,7 @@
 import { decode } from 'qr-decode-wechat'
 import type { ChannelData } from '~/types/channel'
 import showToast from '~/logic/toast'
+import { getMessage } from '~/logic/i18n'
 
 const currentTabId = ref<number>(0)
 const currentWindowId = ref<undefined | number>()
@@ -60,9 +61,9 @@ browser.runtime.onMessage.addListener(async (message) => {
       const result = await decode(canvas)
       if (result[0]?.text) {
         tabs.value[data.data.tabId].url = result[0]?.text
-        showToast('解析二维码成功')
+        showToast(getMessage('parseQRSuccess'))
       } else {
-        showToast('解析二维码失败')
+        showToast(getMessage('parseQRFailure'))
       }
     }
     img.src = data.data.base64

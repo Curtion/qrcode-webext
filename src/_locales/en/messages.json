@@ -1,1 +1,34 @@
-{}
+{
+  "generateQRSuccess": {
+    "message": "QR code generated successfully",
+    "description": "Success message for QR code generation"
+  },
+  "parseQRSuccess": {
+    "message": "QR code parsed successfully",
+    "description": "Success message for QR code parsing"
+  },
+  "generateQRFailure": {
+    "message": "Failed to generate QR code",
+    "description": "Failure message for QR code generation"
+  },
+  "parseQRFailure": {
+    "message": "Failed to parse QR code",
+    "description": "Failure message for QR code parsing"
+  },
+  "operationGuide": {
+    "message": "Quick operations available:",
+    "description": "Operation guide title"
+  },
+  "dragDropTip": {
+    "message": "Drag and drop QR code image/text to sidebar",
+    "description": "Drag and drop tip"
+  },
+  "pasteTip": {
+    "message": "Focus sidebar, press Ctrl+V (Mac: Command+V) to paste image/text",
+    "description": "Paste tip"
+  },
+  "contextMenuTip": {
+    "message": "Right-click on image/text/link and select \"QRcode Tools\"",
+    "description": "Context menu tip"
+  }
+}

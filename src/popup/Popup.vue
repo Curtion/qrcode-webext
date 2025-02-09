@@ -19,7 +19,7 @@ watchEffect(async () => {
 
 <template>
   <main class="w-320px px-4 py-5 text-gray-700 bg-[#F7F7F7] flex items-center flex-col">
-    <img :src="qrdata" alt="二维码">
+    <img :src="qrdata" alt="QRCode">
     <textarea
       v-model="tabs[currentTabId].url" class="w-full min-h-20 mt-2 p-2 text-sm text-gray-700 bg-white
          rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500

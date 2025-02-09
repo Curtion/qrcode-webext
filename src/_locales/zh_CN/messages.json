@@ -1,1 +1,34 @@
-{}
+{
+  "generateQRSuccess": {
+    "message": "生成二维码成功",
+    "description": "生成二维码成功提示"
+  },
+  "parseQRSuccess": {
+    "message": "解析二维码成功",
+    "description": "解析二维码成功提示"
+  },
+  "generateQRFailure": {
+    "message": "生成二维码失败",
+    "description": "生成二维码失败提示"
+  },
+  "parseQRFailure": {
+    "message": "解析二维码失败",
+    "description": "解析二维码失败提示"
+  },
+  "operationGuide": {
+    "message": "可以通过以下方式快速操作：",
+    "description": "操作指南标题"
+  },
+  "dragDropTip": {
+    "message": "拖拽二维码图片/文字到侧边栏",
+    "description": "拖拽提示"
+  },
+  "pasteTip": {
+    "message": "聚焦侧边栏, 按 Ctrl+V (Mac: Command+V) 粘贴图片/文字",
+    "description": "粘贴提示"
+  },
+  "contextMenuTip": {
+    "message": "在图片/文字/链接右键上点击菜单\"QRcode Tools\"",
+    "description": "右键菜单提示"
+  }
+}

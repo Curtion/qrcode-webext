@@ -3,6 +3,7 @@ import { decode } from 'qr-decode-wechat'
 import { currentTabId, tabs } from '~/logic/tab'
 import { generateQR } from '~/logic/qrcode'
 import showToast from '~/logic/toast'
+import { getMessage } from '~/logic/i18n'
 
 const qrdata = ref<undefined | string>()
 
@@ -38,9 +39,9 @@ function handleDataTransferItem(list: DataTransferItem[]) {
           const result = await decode(canvas)
           if (result[0]?.text) {
             tabs.value[currentTabId.value].url = result[0]?.text
-            showToast('解析二维码成功')
+            showToast(getMessage('parseQRSuccess'))
           } else {
-            showToast('解析二维码失败')
+            showToast(getMessage('parseQRFailure'))
           }
         }
         img.src = e.target?.result as string
@@ -54,7 +55,7 @@ function handleDataTransferItem(list: DataTransferItem[]) {
     }
     textItems.getAsString((text) => {
       tabs.value[currentTabId.value].url = text
-      showToast('生成二维码成功')
+      showToast(getMessage('generateQRSuccess'))
     })
   }
 }
@@ -106,7 +107,7 @@ onBeforeUnmount(() => {
 
 <template>
   <main class="w-full h-screen px-4 py-5 text-gray-700 bg-[#F7F7F7] flex items-center flex-col">
-    <img :src="qrdata" alt="二维码">
+    <img :src="qrdata" alt="QRCode">
     <textarea
       v-model="tabs[currentTabId].url"
       class="w-full min-h-50 mt-2 p-2 text-sm text-gray-700 bg-white
@@ -123,11 +124,11 @@ onBeforeUnmount(() => {
       打开设置页
     </button> -->
     <div class="text-sm text-gray-500 mt-4 px-4 py-2 bg-gray-100 rounded-md">
-      可以通过以下方式快速操作：
+      {{ getMessage('operationGuide') }}
       <ul class="mt-1 list-disc list-inside">
-        <li>拖拽二维码图片/文字到侧边栏</li>
-        <li>聚焦侧边栏, 按 Ctrl+V (Mac: Command+V) 粘贴图片/文字</li>
-        <li>在图片/文字/链接右键上点击菜单"QRcode Tools"</li>
+        <li>{{ getMessage('dragDropTip') }}</li>
+        <li>{{ getMessage('pasteTip') }}</li>
+        <li>{{ getMessage('contextMenuTip') }}</li>
       </ul>
     </div>
   </main>
